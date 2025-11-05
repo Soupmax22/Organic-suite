@@ -1,1 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organic Suite</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f9faf3;
+            color: #203030;
+        }
+        header {
+            background: #83b735;
+            color: #fff;
+            padding: 2rem 1rem 1rem 1rem;
+            text-align: center;
+        }
+        main {
+            max-width: 800px;
+            margin: 2rem auto 0 auto;
+            padding: 1rem;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+        }
+        .subtitle {
+            color: #f6ffe3;
+            margin-top: .5rem;
+        }
+        .cta {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.75rem 2rem;
+            font-size: 1.2rem;
+            background: #203030;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.2s;
+        }
+        .cta:hover {
+            background: #3e5542;
+        }
+        section {
+            margin-bottom: 2.5rem;
+        }
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 1rem;
+            color: #bbb;
+        }
+    </style>
+    <script>
+    // Automatic redirect to /pages if it exists
+    document.addEventListener("DOMContentLoaded", function() {
+        // Don’t redirect if we’re already in /pages
+        if (!location.pathname.startsWith("/pages")) {
+            // Try to fetch /pages (head request)
+            fetch("/pages/", {method: "HEAD"})
+                .then(function(response) {
+                    if (response.ok) {
+                        window.location.replace("/pages/");
+                    }
+                });
+        }
+    });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Organic Suite</h1>
+        <div class="subtitle">Empowering Organic Solutions for a Sustainable Future</div>
+    </header>
+    <main>
+        <section>
+            <h2>Welcome!</h2>
+            <p>
+                Welcome to <b>Organic Suite</b>—your one-stop solution for modern, organic, and sustainable living tools.
+                Whether you're looking for resources, guides, apps, or eco-friendly advice, you’ll find it here.
+            </p>
+            <a href="#about" class="cta">Learn More</a>
+        </section>
 
+        <section id="about">
+            <h2>About This Project</h2>
+            <p>
+                <strong>Organic Suite</strong> is an open source project designed to empower individuals, organizations, and communities to practice sustainability and embrace organic solutions. 
+                <br><br>
+                This repository contains a suite of tools and resources, including:
+            </p>
+            <ul>
+                <li>Guides and resources for organic sustainable living</li>
+                <li>Sample applications and utilities for eco-friendly practices</li>
+                <li>Integration samples for various platforms and needs</li>
+            </ul>
+            <p>
+                Explore the suite, contribute, and join us in building a greener future!
+            </p>
+        </section>
+    </main>
+    <footer>
+        &copy; 2025 Organic Suite &mdash; 
+        <a href="https://github.com/soupmaxschool/Organic-suite" style="color:#83b735">View on GitHub</a>
+    </footer>
+</body>
+</html>
