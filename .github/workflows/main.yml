@@ -22,7 +22,7 @@ jobs:
 
       - name: Add upstream (Person A's repo)
         run: |
-          git remote add upstream https://github.com/PersonA/RepoName.git
+          git remote add upstream https://github.com/Soupmaxschool/Organic-suite
 
       - name: Fetch upstream
         run: |
