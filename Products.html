@@ -1,1 +1,67 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+    <style>
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            width: 220px;
+            text-align: center;
+            padding: 24px 10px;
+            transition: box-shadow 0.2s;
+        }
+        .card:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.16);
+        }
+        .card-title {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+        .card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .card img {
+            max-width: 100px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Our Products</h1>
+    <div class="card-container">
+        <a href="AdBlocker.html" class="card-link">
+            <div class="card">
+                <img src="img/adblocker.png" alt="Ad Blocker">
+                <div class="card-title">Ad Blocker</div>
+                <div>Remove unwanted ads from your browsing experience.</div>
+            </div>
+        </a>
+        <a href="PrivacySuite.html" class="card-link">
+            <div class="card">
+                <img src="img/privacy.png" alt="Privacy Suite">
+                <div class="card-title">Privacy Suite</div>
+                <div>Enhance your privacy and block trackers.</div>
+            </div>
+        </a>
+        <a href="SpeedBoost.html" class="card-link">
+            <div class="card">
+                <img src="img/speed.png" alt="Speed Boost">
+                <div class="card-title">Speed Boost</div>
+                <div>Optimize your browsing speed and efficiency.</div>
+            </div>
+        </a>
+    </div>
+</body>
+</html>
