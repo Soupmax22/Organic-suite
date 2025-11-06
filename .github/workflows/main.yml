@@ -1,0 +1,37 @@
+name: Auto Sync
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # run every hour
+  workflow_dispatch:     # allow manual trigger
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout your repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+
+      - name: Add upstream (Person A's repo)
+        run: |
+          git remote add upstream https://github.com/PersonA/RepoName.git
+
+      - name: Fetch upstream
+        run: |
+          git fetch upstream
+
+      - name: Merge upstream changes
+        run: |
+          git merge upstream/main --allow-unrelated-histories || true
+
+      - name: Push updated branch
+        run: |
+          git push origin main
