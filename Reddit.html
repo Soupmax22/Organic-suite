@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Organic Suite — Reddit</title>
+
+<style>
+/* ---------------------------------------------------------
+   ORGANIC SUITE ROOT VARIABLES (FULL V1)
+---------------------------------------------------------- */
+:root {
+  --bg: #0f1412;
+  --bg-2: #0c1310;
+  --card: rgba(255,255,255,0.03);
+  --card-border: rgba(255,255,255,0.06);
+  --muted: rgba(255,255,255,0.65);
+
+  /* ✅ your banner colors */
+  --organic-1: #8fc6a3;
+  --organic-2: #6faf8a;
+
+  --accent-1: #8fc6a3;
+  --accent-2: #6faf8a;
+
+  --radius: 16px;
+  --shadow-1: 0 12px 40px rgba(0,0,0,0.45);
+}
+
+/* GLOBAL RESET */
+html, body {
+  margin:0;
+  padding:0;
+  height:100%;
+  width:100%;
+  background: linear-gradient(180deg, #07110f 0%, #0f1412 55%, #0c1310 100%);
+  color:#e9f7f0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto;
+}
+
+/* ---------------------------------------------------------
+   ✅ EXACT ORGANIC SUITE BANNER (STANDARD SIZE)
+---------------------------------------------------------- */
+header.banner {
+  padding: 48px 24px;
+  background: linear-gradient(90deg, var(--organic-1), var(--organic-2));
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  box-shadow: 0 3px 16px rgba(0,0,0,0.15);
+}
+
+header.banner h1 {
+  margin:0;
+  font-size: clamp(28px, 4vw, 44px);
+  color:#042615;
+  font-weight:800;
+  letter-spacing:-0.6px;
+}
+
+.cta {
+  display:flex;
+  gap:12px;
+}
+
+.link-muted {
+  display:inline-block;
+  padding:10px 14px;
+  background: rgba(255,255,255,0.2);
+  border-radius:12px;
+  text-decoration:none;
+  color:#042615;
+  font-weight:600;
+  backdrop-filter:blur(6px);
+}
+
+.btn {
+  padding:10px 18px;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  background: linear-gradient(180deg, var(--accent-1), var(--accent-2));
+  color:#042615;
+  font-weight:600;
+  box-shadow:0 8px 24px rgba(0,0,0,0.35);
+}
+
+/* ---------------------------------------------------------
+   MAIN LAYOUT
+---------------------------------------------------------- */
+main.wrapper {
+  max-width:1250px;
+  margin:34px auto;
+  padding:0 24px;
+
+  display:grid;
+  grid-template-columns: 1fr 350px;
+  gap:28px;
+}
+
+/* ---------------------------------------------------------
+   SEARCH AREA
+---------------------------------------------------------- */
+.search-card {
+  background: var(--card);
+  border:1px solid var(--card-border);
+  backdrop-filter: blur(4px);
+  padding:20px;
+  border-radius:var(--radius);
+  display:flex;
+  gap:14px;
+  align-items:center;
+}
+
+.search-input {
+  flex:1;
+  padding:12px;
+  background:transparent;
+  border:none;
+  outline:none;
+  color:white;
+  font-size:1.05rem;
+}
+
+select {
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.12);
+  color:white;
+  border-radius:10px;
+  padding:10px;
+}
+
+/* ---------------------------------------------------------
+   RESULTS
+---------------------------------------------------------- */
+#results {
+  margin-top:18px;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.post {
+  display:flex;
+  gap:14px;
+  padding:16px;
+  background:var(--card);
+  border:1px solid var(--card-border);
+  border-radius:14px;
+  transition:0.2s;
+}
+
+.post:hover {
+  transform:translateY(-4px);
+  box-shadow: var(--shadow-1);
+  cursor:pointer;
+}
+
+.thumb {
+  width:92px;
+  height:72px;
+  border-radius:12px;
+  background:rgba(255,255,255,0.05);
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.thumb img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.meta {
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:6px;
+}
+
+.title {
+  font-size:1.05rem;
+  margin:0;
+  font-weight:600;
+  color:white;
+}
+
+.sub {
+  margin:0;
+  font-size:0.9rem;
+  color:var(--muted);
+}
+
+.badges {
+  display:flex;
+  gap:8px;
+}
+
+.pill {
+  padding:6px 10px;
+  font-size:0.82rem;
+  border-radius:999px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.08);
+  color:var(--muted);
+}
+
+/* ---------------------------------------------------------
+   SIDEBAR
+---------------------------------------------------------- */
+aside.side {
+  padding:18px;
+  background: var(--card);
+  border:1px solid var(--card-border);
+  border-radius: var(--radius);
+}
+
+aside.side h3 {
+  margin:0 0 14px 0;
+}
+
+.rec-item {
+  display:flex;
+  justify-content:space-between;
+  padding:10px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:12px;
+  margin-bottom:12px;
+  transition:0.15s;
+}
+
+.rec-item:hover {
+  transform:translateX(4px);
+  cursor:pointer;
+}
+
+.sub-name {
+  color:white;
+  font-weight:600;
+}
+.sub-desc {
+  font-size:0.86rem;
+  color:var(--muted);
+}
+
+/* ---------------------------------------------------------
+   FOOTER
+---------------------------------------------------------- */
+footer {
+  margin:60px 0 40px;
+  text-align:center;
+  color:var(--muted);
+  font-size:0.9rem;
+}
+
+@media (max-width:960px) {
+  main.wrapper {
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ---------------------------------------------------------
+     ✅ HEADER
+---------------------------------------------------------- -->
+<header class="banner">
+  <h1>Organic Suite</h1>
+
+  <div class="cta">
+    <a class="link-muted" href="https://github.com/Soupmax22/Organic-suite" target="_blank">View on GitHub</a>
+    <button class="btn" id="see-products">See all products</button>
+  </div>
+</header>
+
+<!-- ---------------------------------------------------------
+     ✅ MAIN WRAPPER
+---------------------------------------------------------- -->
+<main class="wrapper">
+
+  <!-- LEFT COLUMN (SEARCH + RESULTS) -->
+  <section>
+    <div class="search-card">
+      <input class="search-input" id="searchInput" placeholder="Search Reddit…">
+      <select id="sort">
+        <option value="relevance">Relevance</option>
+        <option value="hot">Hot</option>
+        <option value="new">New</option>
+        <option value="top">Top</option>
+      </select>
+      <button class="btn" id="searchBtn">Search</button>
+    </div>
+
+    <p style="color:var(--muted); margin-top:8px;">
+      Reddit may be blocked at school. Use local JSON below.
+    </p>
+
+    <div style="display:flex; gap:8px; margin-top:8px;">
+      <button class="link-muted" id="loadLocal">Load local JSON</button>
+      <input id="localFile" type="file" accept=".json" style="display:none;">
+    </div>
+
+    <div id="results"></div>
+  </section>
+
+  <!-- RIGHT SIDEBAR -->
+  <aside class="side">
+    <h3>Recommended</h3>
+    <div id="recs"></div>
+  </aside>
+
+</main>
+
+<footer>
+  © 2025 Organic Suite — ad-free viewers for the web
+</footer>
+
+<!-- ---------------------------------------------------------
+     ✅ SCRIPT (FULL V1 FEATURE SET)
+---------------------------------------------------------- -->
+<script>
+const resultsEl = document.getElementById("results");
+const recsEl = document.getElementById("recs");
+const searchInput = document.getElementById("searchInput");
+const sortSel = document.getElementById("sort");
+
+document.getElementById("see-products").onclick = () =>
+  window.open("https://github.com/Soupmax22/Organic-suite","_blank");
+
+/* ---------------------------------------------------------
+   LOCAL JSON LOADER (for blocked school networks)
+---------------------------------------------------------- */
+document.getElementById("loadLocal").onclick = () =>
+  document.getElementById("localFile").click();
+
+document.getElementById("localFile").addEventListener("change", async (ev)=>{
+  const file = ev.target.files[0];
+  const text = await file.text();
+
+  try {
+    const json = JSON.parse(text);
+    const posts = json.data ? json.data.children.map(c=>c.data) : json;
+    renderPosts(posts);
+  } catch {
+    alert("Invalid JSON file!");
+  }
+});
+
+/* ---------------------------------------------------------
+   REDDIT SEARCH FUNCTION
+---------------------------------------------------------- */
+async function searchReddit(query, sort) {
+  const url = `https://www.reddit.com/search.json?q=${encodeURIComponent(query)}&limit=50&sort=${sort}`;
+  const r = await fetch(url);
+  const j = await r.json();
+  return j.data.children.map(c=>c.data);
+}
+
+/* ---------------------------------------------------------
+   RUN SEARCH
+---------------------------------------------------------- */
+async function runSearch() {
+  const q = searchInput.value.trim();
+  if(!q) {
+    resultsEl.innerHTML = "<p style='color:var(--muted);'>Type something to search.</p>";
+    return;
+  }
+
+  resultsEl.innerHTML = "<p style='color:var(--muted);'>Loading…</p>";
+
+  try {
+    const posts = await searchReddit(q, sortSel.value);
+    renderPosts(posts);
+    populateRecs(posts);
+  } catch {
+    resultsEl.innerHTML = "<p style='color:var(--muted);'>Cannot reach Reddit. Use local JSON.</p>";
+  }
+}
+
+document.getElementById("searchBtn").onclick = runSearch;
+searchInput.onkeyup = e => { if(e.key === "Enter") runSearch(); };
+
+/* ---------------------------------------------------------
+   RENDER POSTS
+---------------------------------------------------------- */
+function renderPosts(posts) {
+  resultsEl.innerHTML = "";
+
+  posts.forEach(p => {
+    const article = document.createElement("article");
+    article.className = "post";
+
+    const thumb = document.createElement("div");
+    thumb.className = "thumb";
+
+    let imgURL = "";
+    if(p.thumbnail && p.thumbnail.startsWith("http")) imgURL = p.thumbnail;
+    if(!imgURL && p.preview?.images?.[0]) {
+      imgURL = p.preview.images[0].source.url.replace(/&amp;/g,"&");
+    }
+
+    if(imgURL) {
+      const img = document.createElement("img");
+      img.src = imgURL;
+      thumb.appendChild(img);
+    }
+
+    const meta = document.createElement("div");
+    meta.className = "meta";
+
+    const title = document.createElement("h4");
+    title.className = "title";
+    title.textContent = p.title;
+
+    const sub = document.createElement("p");
+    sub.className = "sub";
+    sub.textContent = `r/${p.subreddit} • u/${p.author} • ${p.ups} upvotes`;
+
+    const badges = document.createElement("div");
+    badges.className = "badges";
+
+    const time = document.createElement("span");
+    time.className = "pill";
+    time.textContent = new Date(p.created_utc * 1000).toLocaleString();
+
+    badges.appendChild(time);
+
+    meta.append(title, sub, badges);
+
+    article.append(thumb, meta);
+
+    article.onclick = () =>
+      window.open(p.url_overridden_by_dest || ("https://reddit.com" + p.permalink), "_blank");
+
+    resultsEl.appendChild(article);
+  });
+}
+
+/* ---------------------------------------------------------
+   RECOMMENDATION SYSTEM (simple frequency)
+---------------------------------------------------------- */
+function populateRecs(posts) {
+  recsEl.innerHTML = "";
+
+  const freq = {};
+  posts.forEach(p => freq[p.subreddit] = (freq[p.subreddit] || 0) + 1);
+
+  Object.keys(freq)
+    .sort((a,b)=>freq[b]-freq[a])
+    .slice(0,5)
+    .forEach(subName => {
+      addSubRec(subName, "Top results from search");
+    });
+}
+
+/* default sidebar */
+["technology","pics","funny","gaming","AskReddit"].forEach(s=>{
+  addSubRec(s,"Open subreddit");
+});
+
+function addSubRec(name, desc) {
+  const wrap = document.createElement("div");
+  wrap.className = "rec-item";
+
+  wrap.innerHTML = `
+    <div>
+      <div class="sub-name">r/${name}</div>
+      <div class="sub-desc">${desc}</div>
+    </div>
+    <div style="opacity:.5;">›</div>
+  `;
+
+  wrap.onclick = async () => {
+    try {
+      const r = await fetch(`https://www.reddit.com/r/${name}.json`);
+      const j = await r.json();
+      const posts = j.data.children.map(c=>c.data);
+      renderPosts(posts);
+    } catch {
+      alert("Blocked or unreachable.");
+    }
+  };
+
+  recsEl.appendChild(wrap);
+}
+</script>
+
+</body>
+</html>
