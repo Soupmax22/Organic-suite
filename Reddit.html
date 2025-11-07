@@ -1,135 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Organic Suite - Full Reddit Viewer</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        header, footer {
-            background-color: #40916c; /* Updated banner color */
-            color: white;
-            padding: 1rem;
-            text-align: center;
-        }
-        main {
-            padding: 2rem;
-        }
-        .reddit-post {
-            background-color: white;
-            margin-bottom: 1rem;
-            padding: 1rem;
-            border-radius: 8px;
-            box-shadow: 0px 0px 5px rgba(0,0,0,0.1);
-        }
-        .reddit-post img, .reddit-post video {
-            max-width: 100%;
-            margin-top: 0.5rem;
-            border-radius: 5px;
-        }
-        button {
-            background-color: #40916c;
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #2d6a4f;
-        }
-        input[type="text"] {
-            padding: 0.5rem;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            width: 300px;
-            margin-right: 0.5rem;
-        }
-        a {
-            color: #1b4332;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Organic Suite - Reddit Search Viewer</title>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+    header, footer {
+        width: 100%;
+        background-color: #40916c;
+        color: white;
+        padding: 1rem 0;
+        text-align: center;
+        box-sizing: border-box;
+    }
+    main {
+        padding: 2rem;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+    #search-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2rem;
+    }
+    #search-container input[type="text"] {
+        padding: 0.6rem 1rem;
+        border-radius: 30px 0 0 30px;
+        border: 1px solid #ccc;
+        flex: 1;
+        max-width: 500px;
+        font-size: 1rem;
+        outline: none;
+    }
+    #search-container button {
+        padding: 0.6rem 1rem;
+        border-radius: 0 30px 30px 0;
+        border: none;
+        background-color: #40916c;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+    #search-container button:hover {
+        background-color: #2d6a4f;
+    }
+    .reddit-post {
+        background-color: white;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        border-radius: 8px;
+        box-shadow: 0px 0px 5px rgba(0,0,0,0.1);
+    }
+    .reddit-post img, .reddit-post video {
+        max-width: 100%;
+        margin-top: 0.5rem;
+        border-radius: 5px;
+    }
+    a {
+        color: #1b4332;
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+</style>
 </head>
 <body>
 
-    <header>
-        <h1>Organic Suite</h1>
-        <p>Ad-free Full Reddit Viewer</p>
-    </header>
+<header>
+    <h1>Organic Suite</h1>
+    <p>Ad-free Reddit Search Viewer</p>
+</header>
 
-    <main>
-        <div>
-            <input type="text" id="subreddit" placeholder="Enter subreddit name">
-            <button id="load-subreddit">Load Subreddit</button>
-        </div>
-        <div id="reddit-container"></div>
-    </main>
+<main>
+    <div id="search-container">
+        <input type="text" id="search-input" placeholder="Search subreddits or posts...">
+        <button id="search-btn">Search</button>
+    </div>
+    <div id="reddit-container"></div>
+</main>
 
-    <footer>
-        © 2025 Organic Suite
-    </footer>
+<footer>
+    © 2025 Organic Suite
+</footer>
 
-    <script>
-        const redditContainer = document.getElementById('reddit-container');
-        const loadBtn = document.getElementById('load-subreddit');
-        const subredditInput = document.getElementById('subreddit');
+<script>
+const redditContainer = document.getElementById('reddit-container');
+const searchInput = document.getElementById('search-input');
+const searchBtn = document.getElementById('search-btn');
 
-        function createPostElement(post) {
-            const div = document.createElement('div');
-            div.classList.add('reddit-post');
+// Create post element with media support
+function createPostElement(post) {
+    const div = document.createElement('div');
+    div.classList.add('reddit-post');
 
-            div.innerHTML = `<h3>${post.title}</h3>`;
-            if (post.selftext) {
-                div.innerHTML += `<p>${post.selftext}</p>`;
-            }
+    div.innerHTML = `<h3>${post.title}</h3>`;
+    if(post.selftext) div.innerHTML += `<p>${post.selftext}</p>`;
 
-            if (post.post_hint === 'image' && post.url) {
-                div.innerHTML += `<img src="${post.url}" alt="Post image">`;
-            }
-            if (post.is_video && post.media?.reddit_video?.fallback_url) {
-                div.innerHTML += `<video controls>
-                                    <source src="${post.media.reddit_video.fallback_url}" type="video/mp4">
-                                   </video>`;
-            }
+    if(post.post_hint === 'image' && post.url) {
+        div.innerHTML += `<img src="${post.url}" alt="Post image">`;
+    }
+    if(post.is_video && post.media?.reddit_video?.fallback_url) {
+        div.innerHTML += `<video controls>
+                            <source src="${post.media.reddit_video.fallback_url}" type="video/mp4">
+                          </video>`;
+    }
+    div.innerHTML += `<p><a href="https://reddit.com${post.permalink}" target="_blank">View on Reddit</a></p>`;
+    return div;
+}
 
-            div.innerHTML += `<p><a href="https://reddit.com${post.permalink}" target="_blank">View on Reddit</a></p>`;
-
-            return div;
+// Search Reddit (subreddits or posts)
+async function searchReddit(query) {
+    redditContainer.innerHTML = '<p>Loading...</p>';
+    try {
+        const response = await fetch(`https://www.reddit.com/search.json?q=${encodeURIComponent(query)}&limit=20`);
+        const data = await response.json();
+        redditContainer.innerHTML = '';
+        if(data.data.children.length === 0) {
+            redditContainer.innerHTML = '<p>No results found.</p>';
+            return;
         }
-
-        async function loadSubreddit(subreddit) {
-            redditContainer.innerHTML = '<p>Loading...</p>';
-            try {
-                const response = await fetch(`https://www.reddit.com/r/${subreddit}.json`);
-                const data = await response.json();
-                redditContainer.innerHTML = '';
-                data.data.children.forEach(item => {
-                    const postEl = createPostElement(item.data);
-                    redditContainer.appendChild(postEl);
-                });
-            } catch (error) {
-                redditContainer.innerHTML = `<p style="color:red;">Error loading subreddit: ${error}</p>`;
-            }
-        }
-
-        loadBtn.addEventListener('click', () => {
-            const subreddit = subredditInput.value.trim();
-            if(subreddit) {
-                loadSubreddit(subreddit);
-            }
+        data.data.children.forEach(item => {
+            const postEl = createPostElement(item.data);
+            redditContainer.appendChild(postEl);
         });
+    } catch(err) {
+        redditContainer.innerHTML = `<p style="color:red;">Error: ${err}</p>`;
+    }
+}
 
-        loadSubreddit('popular');
-    </script>
+searchBtn.addEventListener('click', () => {
+    const query = searchInput.value.trim();
+    if(query) searchReddit(query);
+});
+
+// Optional: enter key triggers search
+searchInput.addEventListener('keyup', e => {
+    if(e.key === 'Enter') searchBtn.click();
+});
+
+// Load popular posts by default
+searchReddit('popular');
+</script>
 
 </body>
 </html>
