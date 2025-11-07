@@ -4,277 +4,98 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Organic Suite — Reddit Viewer</title>
-
 <style>
 :root{
-  --bg:#0f1412;
-  --bg-gradient:linear-gradient(180deg,#07110f 0%,#0f1412 60%);
-  --card: rgba(255,255,255,0.03);
-  --card-border: rgba(255,255,255,0.06);
-  --muted: rgba(255,255,255,0.65);
+  --bg:#f5f5f5;
+  --bg-gradient:linear-gradient(180deg,#e9f7f0 0%,#f5f5f5 100%);
+  --card:#ffffff;
+  --card-border:#d8e0d8;
+  --muted:#6f6f6f;
   --banner-1:#8fc6a3;
   --banner-2:#6faf8a;
   --accent-1:#8fc6a3;
   --accent-2:#6faf8a;
   --radius:14px;
-  --shadow:0 12px 34px rgba(3,7,5,0.35);
+  --shadow:0 6px 20px rgba(0,0,0,0.12);
 }
 
 html,body{
-  margin:0;
-  padding:0;
+  margin:0; padding:0;
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto;
   background: var(--bg-gradient);
-  color:#e8f3ee;
-  height:100%;
-  width:100%;
+  color:#042615;
+  height:100%; width:100%;
 }
 
+/* BANNER */
 header.banner{
   padding:48px 24px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+  display:flex; justify-content:space-between; align-items:center;
   background:linear-gradient(90deg,var(--banner-1),var(--banner-2));
   box-shadow:0 3px 16px rgba(0,0,0,0.15);
 }
-
 header.banner h1{
-  margin:0;
-  font-size: clamp(28px,4vw,44px);
-  color:#042615;
-  font-weight:800;
-  letter-spacing:-0.6px;
-}
-
-.cta{
-  display:flex;
-  gap:12px;
-}
-
-.link-muted{
-  display:inline-block;
-  padding:10px 14px;
-  border-radius:12px;
-  background:rgba(255,255,255,0.2);
-  color:#042615;
-  font-weight:600;
-  text-decoration:none;
-}
-
-.btn{
-  padding:10px 18px;
-  border:none;
-  border-radius:12px;
-  background: linear-gradient(180deg,var(--accent-1),var(--accent-2));
-  color:#042615;
-  font-weight:600;
-  box-shadow:0 8px 24px rgba(0,0,0,0.35);
-  cursor:pointer;
-}
-
-main.wrapper{
-  max-width:1250px;
-  margin:34px auto;
-  padding:0 24px;
-  display:grid;
-  grid-template-columns:1fr 350px;
-  gap:28px;
-}
-
-.search-card{
-  background: var(--card);
-  border:1px solid var(--card-border);
-  backdrop-filter: blur(4px);
-  border-radius:var(--radius);
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding:16px;
-}
-
-.search-input{
-  flex:1;
-  padding:10px;
-  background:transparent;
-  border:none;
-  outline:none;
-  color:white;
-  font-size:1rem;
-}
-
-select{
-  background:rgba(255,255,255,0.08);
-  border:1px solid rgba(255,255,255,0.12);
-  border-radius:10px;
-  padding:8px;
-  color:white;
-}
-
-#results{
-  margin-top:18px;
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-}
-
-.post{
-  display:flex;
-  gap:12px;
-  padding:16px;
-  border-radius:var(--radius);
-  background:var(--card);
-  border:1px solid var(--card-border);
-  transition:0.2s;
-}
-
-.post:hover{
-  transform:translateY(-3px);
-  box-shadow:var(--shadow);
-  cursor:pointer;
-}
-
-.thumb{
-  width:92px;
-  height:72px;
-  border-radius:12px;
-  background:rgba(255,255,255,0.03);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-}
-
-.thumb img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.meta{
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  gap:6px;
-}
-
-.title{
-  margin:0;
-  font-weight:600;
-  font-size:1.05rem;
-  color:white;
-}
-
-.sub{
-  margin:0;
-  color:var(--muted);
-  font-size:0.88rem;
-}
-
-.badges{
-  display:flex;
-  gap:8px;
-}
-
-.pill{
-  padding:5px 8px;
-  font-size:0.82rem;
-  border-radius:999px;
-  background:rgba(255,255,255,0.02);
-  border:1px solid rgba(255,255,255,0.02);
-  color:var(--muted);
-}
-
-aside.panel{
-  padding:16px;
-  background:var(--card);
-  border-radius:var(--radius);
-  border:1px solid var(--card-border);
-}
-
-aside.panel h3{
-  margin:0 0 12px 0;
-}
-
-.rec-item{
-  display:flex;
-  justify-content:space-between;
-  padding:10px;
-  border-radius:12px;
-  background:rgba(255,255,255,0.02);
-  border:1px solid rgba(255,255,255,0.02);
-  margin-bottom:10px;
-  transition:0.12s;
-}
-
-.rec-item:hover{
-  transform:translateX(4px);
-  cursor:pointer;
-}
-
-.sub-name{
-  font-weight:600;
-  color:white;
-}
-
-.sub-desc{
-  font-size:0.85rem;
-  color:var(--muted);
-}
-
-footer{
-  margin:60px 0 40px;
-  text-align:center;
-  font-size:0.9rem;
-  color:var(--muted);
-}
-
-@media(max-width:960px){
-  main.wrapper{
-    grid-template-columns:1fr;
-  }
-}
-
-/* -------------------------------------------------
-  FULLSCREEN OVERLAY POST VIEWER
-------------------------------------------------- */
-#overlay{
-  display:none;
-  position:fixed;
-  top:0; left:0;
-  width:100%;
-  height:100%;
-  background: rgba(0,0,0,0.95);
-  z-index:9999;
-  overflow-y:auto;
-  padding:24px;
-  box-sizing:border-box;
-  color:white;
-}
-
-#overlay .close-btn{
-  position:fixed;
-  top:24px;
-  right:24px;
-  font-size:1.6rem;
-  background: rgba(255,255,255,0.2);
-  border:none;
-  border-radius:50%;
-  width:40px;
-  height:40px;
-  cursor:pointer;
+  margin:0; font-size:clamp(28px,4vw,44px);
+  font-weight:800; letter-spacing:-0.6px;
   color:#042615;
 }
+.cta{display:flex; gap:12px;}
+.link-muted{display:inline-block; padding:10px 14px; border-radius:12px;
+background:rgba(255,255,255,0.2); color:#042615; font-weight:600; text-decoration:none;}
+.btn{padding:10px 18px; border:none; border-radius:12px;
+background:linear-gradient(180deg,var(--accent-1),var(--accent-2));
+color:#042615; font-weight:600; box-shadow:0 8px 24px rgba(0,0,0,0.35); cursor:pointer;}
 
-#overlay h2{
-  margin-top:0;
-}
+/* MAIN LAYOUT */
+main.wrapper{max-width:1250px; margin:34px auto; padding:0 24px;
+display:grid; grid-template-columns:1fr 350px; gap:28px;}
+.search-card{background: var(--card); border:1px solid var(--card-border);
+backdrop-filter: blur(4px); border-radius:var(--radius);
+display:flex; align-items:center; gap:12px; padding:16px;}
+.search-input{flex:1; padding:10px; background:transparent; border:none;
+outline:none; color:#042615; font-size:1rem;}
+select{background:rgba(0,0,0,0.02); border:1px solid #d8e0d8; border-radius:10px;
+padding:8px; color:#042615;}
 
-#overlay img, #overlay video{
-  max-width:100%;
-  margin-top:12px;
-  border-radius:12px;
-}
+/* RESULTS */
+#results{margin-top:18px; display:flex; flex-direction:column; gap:12px;}
+.post{display:flex; gap:12px; padding:16px; border-radius:var(--radius);
+background:var(--card); border:1px solid var(--card-border); transition:0.2s;}
+.post:hover{transform:translateY(-3px); box-shadow:var(--shadow); cursor:pointer;}
+.thumb{width:92px; height:72px; border-radius:12px; background:rgba(0,0,0,0.02);
+display:flex; align-items:center; justify-content:center; overflow:hidden;}
+.thumb img{width:100%; height:100%; object-fit:cover;}
+.meta{flex:1; display:flex; flex-direction:column; gap:6px;}
+.title{margin:0; font-weight:600; font-size:1.05rem; color:#042615;}
+.sub{margin:0; color:var(--muted); font-size:0.88rem;}
+.badges{display:flex; gap:8px;}
+.pill{padding:5px 8px; font-size:0.82rem; border-radius:999px;
+background:rgba(0,0,0,0.02); border:1px solid rgba(0,0,0,0.02); color:var(--muted);}
+
+/* SIDEBAR */
+aside.panel{padding:16px; background:var(--card); border-radius:var(--radius);
+border:1px solid var(--card-border);}
+aside.panel h3{margin:0 0 12px 0;}
+.rec-item{display:flex; justify-content:space-between; padding:10px; border-radius:12px;
+background:rgba(0,0,0,0.02); border:1px solid rgba(0,0,0,0.02); margin-bottom:10px; transition:0.12s;}
+.rec-item:hover{transform:translateX(4px); cursor:pointer;}
+.sub-name{font-weight:600; color:#042615;}
+.sub-desc{font-size:0.85rem; color:var(--muted);}
+footer{margin:60px 0 40px; text-align:center; font-size:0.9rem; color:var(--muted);}
+
+@media(max-width:960px){main.wrapper{grid-template-columns:1fr;}}
+
+/* FULLSCREEN OVERLAY */
+#overlay{display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+background: rgba(0,0,0,0.95); z-index:9999; overflow-y:auto; padding:24px; box-sizing:border-box; color:#042615;}
+#overlay .close-btn{position:fixed; top:24px; right:24px; font-size:1.6rem;
+background: rgba(255,255,255,0.2); border:none; border-radius:50%; width:40px; height:40px; cursor:pointer; color:#042615;}
+#overlay h2{margin-top:0;}
+#overlay img, #overlay video{max-width:100%; margin-top:12px; border-radius:12px;}
+.comment{margin-left:20px; margin-top:12px; padding:8px; border-left:2px solid rgba(0,0,0,0.1);}
+.comment-author{font-weight:600; font-size:0.9rem;}
+.comment-meta{font-size:0.75rem; color:#6f6f6f;}
+.comment-text{margin:4px 0 0 0;}
 </style>
 </head>
 <body>
@@ -300,15 +121,11 @@ footer{
     <button class="btn" id="searchBtn">Search</button>
   </div>
 
-  <p style="color:var(--muted); margin-top:8px;">
-    Reddit may be blocked at school. Use local JSON below.
-  </p>
-
+  <p style="color:var(--muted); margin-top:8px;">Reddit may be blocked at school. Use local JSON below.</p>
   <div style="display:flex; gap:8px; margin-top:8px;">
     <button class="link-muted" id="loadLocal">Load local JSON</button>
     <input id="localFile" type="file" accept=".json" style="display:none;">
   </div>
-
   <div id="results"></div>
 </section>
 
@@ -318,17 +135,16 @@ footer{
 </aside>
 </main>
 
-<footer>
-  © 2025 Organic Suite — ad-free Reddit viewer
-</footer>
+<footer>© 2025 Organic Suite — ad-free Reddit viewer</footer>
 
-<!-- OVERLAY -->
+<!-- FULLSCREEN OVERLAY -->
 <div id="overlay">
   <button class="close-btn">&times;</button>
   <div id="overlay-content"></div>
 </div>
 
 <script>
+// DOM elements
 const resultsEl = document.getElementById("results");
 const recsEl = document.getElementById("recs");
 const searchInput = document.getElementById("searchInput");
@@ -336,14 +152,13 @@ const sortSel = document.getElementById("sort");
 const overlay = document.getElementById("overlay");
 const overlayContent = document.getElementById("overlay-content");
 
+// Open GitHub
 document.getElementById("see-products").onclick = () =>
   window.open("https://github.com/Soupmax22/Organic-suite","_blank");
 
-// LOCAL JSON
-document.getElementById("loadLocal").onclick = () =>
-  document.getElementById("localFile").click();
-
-document.getElementById("localFile").addEventListener("change", async (ev)=>{
+// Local JSON fallback
+document.getElementById("loadLocal").onclick = ()=>document.getElementById("localFile").click();
+document.getElementById("localFile").addEventListener("change", async ev=>{
   const file = ev.target.files[0];
   const txt = await file.text();
   try{
@@ -355,7 +170,7 @@ document.getElementById("localFile").addEventListener("change", async (ev)=>{
   }
 });
 
-// SEARCH
+// Search
 async function searchReddit(query, sort){
   const res = await fetch(`https://www.reddit.com/search.json?q=${encodeURIComponent(query)}&limit=30&sort=${sort}`);
   const json = await res.json();
@@ -374,60 +189,49 @@ async function runSearch(){
     resultsEl.innerHTML="<p style='color:var(--muted)'>Cannot reach Reddit. Use local JSON.</p>";
   }
 }
+document.getElementById("searchBtn").onclick=runSearch;
+searchInput.onkeyup=e=>{if(e.key==="Enter") runSearch();};
 
-document.getElementById("searchBtn").onclick = runSearch;
-searchInput.onkeyup = e=>{if(e.key==="Enter") runSearch();};
-
-// RENDER POSTS
+// Render posts
 function renderPosts(posts){
   resultsEl.innerHTML="";
   posts.forEach(p=>{
     const post = document.createElement("div");
     post.className="post";
 
-    const thumb = document.createElement("div");
-    thumb.className="thumb";
-    let thumbUrl="";
-    if(p.thumbnail && p.thumbnail.startsWith("http")) thumbUrl=p.thumbnail;
-    if(!thumbUrl && p.preview?.images?.[0]) thumbUrl=p.preview.images[0].source.url.replace(/&amp;/g,"&");
-    if(thumbUrl){
-      const img = document.createElement("img");
-      img.src=thumbUrl;
-      thumb.appendChild(img);
+    const meta = document.createElement("div"); meta.className="meta";
+    const title = document.createElement("h4"); title.className="title"; title.textContent=p.title;
+    const sub = document.createElement("p"); sub.className="sub";
+    sub.textContent=`r/${p.subreddit} • u/${p.author} • ${p.ups} upvotes`;
+    meta.append(title,sub);
+
+    const thumb = document.createElement("div"); thumb.className="thumb";
+    let imgURL="";
+    if(p.thumbnail && p.thumbnail.startsWith("http") && !["self","default","nsfw","image","spoiler"].includes(p.thumbnail))
+      imgURL=p.thumbnail;
+    if(!imgURL && p.preview?.images?.[0]) imgURL=p.preview.images[0].source.url.replace(/&amp;/g,"&");
+    if(imgURL){
+      const img=document.createElement("img"); img.src=imgURL; thumb.appendChild(img);
+      post.append(thumb,meta);
+    } else {
+      post.append(meta);
     }
 
-    const meta = document.createElement("div");
-    meta.className="meta";
-    const title = document.createElement("h4");
-    title.className="title";
-    title.textContent = p.title;
-    const sub = document.createElement("p");
-    sub.className="sub";
-    sub.textContent = `r/${p.subreddit} • u/${p.author} • ${p.ups} upvotes`;
-    meta.append(title,sub);
-    post.append(thumb,meta);
-
-    post.onclick = ()=>{
-      showOverlay(p);
-    };
+    post.onclick=()=>showOverlay(p);
     resultsEl.appendChild(post);
   });
 }
 
-// RECOMMENDATIONS
+// Populate recommended subreddits
 function populateRecs(posts){
   recsEl.innerHTML="";
   const freq={};
   posts.forEach(p=>freq[p.subreddit]=(freq[p.subreddit]||0)+1);
-  Object.keys(freq).sort((a,b)=>freq[b]-freq[a]).slice(0,4).forEach(s=>{
-    addRecItem(s,"Top results");
-  });
+  Object.keys(freq).sort((a,b)=>freq[b]-freq[a]).slice(0,4).forEach(s=>addRecItem(s,"Top results"));
   ["technology","gaming","aww","pics"].forEach(s=>addRecItem(s,"Open subreddit"));
 }
-
 function addRecItem(name,desc){
-  const div = document.createElement("div");
-  div.className="rec-item";
+  const div=document.createElement("div"); div.className="rec-item";
   div.innerHTML=`<div><div class="sub-name">r/${name}</div><div class="sub-desc">${desc}</div></div><div style="opacity:.6">›</div>`;
   div.onclick=async()=>{
     const r = await fetch(`https://www.reddit.com/r/${name}.json`);
@@ -437,43 +241,49 @@ function addRecItem(name,desc){
   recsEl.appendChild(div);
 }
 
-// OVERLAY
-function showOverlay(post){
+// Overlay viewer with nested comments
+async function showOverlay(post){
   overlayContent.innerHTML="";
-  const h2 = document.createElement("h2"); h2.textContent=post.title;
-  overlayContent.appendChild(h2);
-
-  const meta = document.createElement("p");
+  const h2=document.createElement("h2"); h2.textContent=post.title; overlayContent.appendChild(h2);
+  const meta=document.createElement("p");
   meta.textContent=`r/${post.subreddit} • u/${post.author} • ${post.ups} upvotes • ${new Date(post.created_utc*1000).toLocaleString()}`;
   overlayContent.appendChild(meta);
 
-  if(post.selftext) {
-    const p = document.createElement("p"); p.textContent=post.selftext;
-    overlayContent.appendChild(p);
-  }
-
-  // Media
+  if(post.selftext){ const p=document.createElement("p"); p.textContent=post.selftext; overlayContent.appendChild(p); }
   if(post.preview?.images?.[0]){
-    const img = document.createElement("img");
-    img.src = post.preview.images[0].source.url.replace(/&amp;/g,"&");
+    const img=document.createElement("img"); img.src=post.preview.images[0].source.url.replace(/&amp;/g,"&");
     overlayContent.appendChild(img);
   }
-
   if(post.media?.reddit_video?.fallback_url){
-    const vid = document.createElement("video");
-    vid.src = post.media.reddit_video.fallback_url;
-    vid.controls = true;
+    const vid=document.createElement("video"); vid.src=post.media.reddit_video.fallback_url; vid.controls=true;
     overlayContent.appendChild(vid);
   }
 
+  // Fetch comments
+  try{
+    const res=await fetch(`https://www.reddit.com${post.permalink}.json`);
+    const json=await res.json();
+    const comments=json[1].data.children.filter(c=>c.kind==="t1").map(c=>c.data);
+    comments.forEach(c=>renderComment(c,overlayContent,0));
+  }catch(e){console.log("Comments error",e);}
   overlay.style.display="block";
 }
 
-overlay.querySelector(".close-btn").onclick=()=>{overlay.style.display="none";}
-overlay.onclick=e=>{
-  if(e.target===overlay) overlay.style.display="none";
+function renderComment(comment,parent,level){
+  const div=document.createElement("div"); div.className="comment";
+  div.style.marginLeft=(level*20)+"px";
+  const author=document.createElement("div"); author.className="comment-author"; author.textContent=comment.author;
+  const meta=document.createElement("div"); meta.className="comment-meta"; meta.textContent=`${comment.ups} upvotes • ${new Date(comment.created_utc*1000).toLocaleString()}`;
+  const text=document.createElement("div"); text.className="comment-text"; text.innerHTML=comment.body_html.replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&amp;/g,"&");
+  div.append(author,meta,text); parent.appendChild(div);
+  if(comment.replies && comment.replies.data){
+    comment.replies.data.children.filter(c=>c.kind==="t1").forEach(c=>renderComment(c.data,div,level+1));
+  }
 }
-</script>
 
+// Overlay close
+overlay.querySelector(".close-btn").onclick=()=>{overlay.style.display="none";}
+overlay.onclick=e=>{if(e.target===overlay) overlay.style.display="none";}
+</script>
 </body>
 </html>
