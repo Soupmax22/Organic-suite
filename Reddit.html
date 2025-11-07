@@ -3,490 +3,475 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Organic Suite — Reddit</title>
+<title>Organic Suite — Reddit Viewer</title>
 
 <style>
-/* ---------------------------------------------------------
-   ORGANIC SUITE ROOT VARIABLES (FULL V1)
----------------------------------------------------------- */
-:root {
-  --bg: #0f1412;
-  --bg-2: #0c1310;
+:root{
+  --bg:#0f1412;
+  --bg-gradient:linear-gradient(180deg,#07110f 0%,#0f1412 60%);
   --card: rgba(255,255,255,0.03);
   --card-border: rgba(255,255,255,0.06);
   --muted: rgba(255,255,255,0.65);
-
-  /* ✅ your banner colors */
-  --organic-1: #8fc6a3;
-  --organic-2: #6faf8a;
-
-  --accent-1: #8fc6a3;
-  --accent-2: #6faf8a;
-
-  --radius: 16px;
-  --shadow-1: 0 12px 40px rgba(0,0,0,0.45);
+  --banner-1:#8fc6a3;
+  --banner-2:#6faf8a;
+  --accent-1:#8fc6a3;
+  --accent-2:#6faf8a;
+  --radius:14px;
+  --shadow:0 12px 34px rgba(3,7,5,0.35);
 }
 
-/* GLOBAL RESET */
-html, body {
+html,body{
   margin:0;
   padding:0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto;
+  background: var(--bg-gradient);
+  color:#e8f3ee;
   height:100%;
   width:100%;
-  background: linear-gradient(180deg, #07110f 0%, #0f1412 55%, #0c1310 100%);
-  color:#e9f7f0;
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto;
 }
 
-/* ---------------------------------------------------------
-   ✅ EXACT ORGANIC SUITE BANNER (STANDARD SIZE)
----------------------------------------------------------- */
-header.banner {
-  padding: 48px 24px;
-  background: linear-gradient(90deg, var(--organic-1), var(--organic-2));
+header.banner{
+  padding:48px 24px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  box-shadow: 0 3px 16px rgba(0,0,0,0.15);
+  background:linear-gradient(90deg,var(--banner-1),var(--banner-2));
+  box-shadow:0 3px 16px rgba(0,0,0,0.15);
 }
 
-header.banner h1 {
+header.banner h1{
   margin:0;
-  font-size: clamp(28px, 4vw, 44px);
+  font-size: clamp(28px,4vw,44px);
   color:#042615;
   font-weight:800;
   letter-spacing:-0.6px;
 }
 
-.cta {
+.cta{
   display:flex;
   gap:12px;
 }
 
-.link-muted {
+.link-muted{
   display:inline-block;
   padding:10px 14px;
-  background: rgba(255,255,255,0.2);
   border-radius:12px;
-  text-decoration:none;
+  background:rgba(255,255,255,0.2);
   color:#042615;
   font-weight:600;
-  backdrop-filter:blur(6px);
+  text-decoration:none;
 }
 
-.btn {
+.btn{
   padding:10px 18px;
   border:none;
   border-radius:12px;
-  cursor:pointer;
-  background: linear-gradient(180deg, var(--accent-1), var(--accent-2));
+  background: linear-gradient(180deg,var(--accent-1),var(--accent-2));
   color:#042615;
   font-weight:600;
   box-shadow:0 8px 24px rgba(0,0,0,0.35);
+  cursor:pointer;
 }
 
-/* ---------------------------------------------------------
-   MAIN LAYOUT
----------------------------------------------------------- */
-main.wrapper {
+main.wrapper{
   max-width:1250px;
   margin:34px auto;
   padding:0 24px;
-
   display:grid;
-  grid-template-columns: 1fr 350px;
+  grid-template-columns:1fr 350px;
   gap:28px;
 }
 
-/* ---------------------------------------------------------
-   SEARCH AREA
----------------------------------------------------------- */
-.search-card {
+.search-card{
   background: var(--card);
   border:1px solid var(--card-border);
   backdrop-filter: blur(4px);
-  padding:20px;
   border-radius:var(--radius);
   display:flex;
-  gap:14px;
   align-items:center;
+  gap:12px;
+  padding:16px;
 }
 
-.search-input {
+.search-input{
   flex:1;
-  padding:12px;
+  padding:10px;
   background:transparent;
   border:none;
   outline:none;
   color:white;
-  font-size:1.05rem;
+  font-size:1rem;
 }
 
-select {
+select{
   background:rgba(255,255,255,0.08);
   border:1px solid rgba(255,255,255,0.12);
-  color:white;
   border-radius:10px;
-  padding:10px;
+  padding:8px;
+  color:white;
 }
 
-/* ---------------------------------------------------------
-   RESULTS
----------------------------------------------------------- */
-#results {
+#results{
   margin-top:18px;
   display:flex;
   flex-direction:column;
-  gap:14px;
+  gap:12px;
 }
 
-.post {
+.post{
   display:flex;
-  gap:14px;
+  gap:12px;
   padding:16px;
+  border-radius:var(--radius);
   background:var(--card);
   border:1px solid var(--card-border);
-  border-radius:14px;
   transition:0.2s;
 }
 
-.post:hover {
-  transform:translateY(-4px);
-  box-shadow: var(--shadow-1);
+.post:hover{
+  transform:translateY(-3px);
+  box-shadow:var(--shadow);
   cursor:pointer;
 }
 
-.thumb {
+.thumb{
   width:92px;
   height:72px;
   border-radius:12px;
-  background:rgba(255,255,255,0.05);
-  overflow:hidden;
+  background:rgba(255,255,255,0.03);
   display:flex;
   align-items:center;
   justify-content:center;
+  overflow:hidden;
 }
-.thumb img {
+
+.thumb img{
   width:100%;
   height:100%;
   object-fit:cover;
 }
 
-.meta {
+.meta{
   flex:1;
   display:flex;
   flex-direction:column;
-  justify-content:center;
   gap:6px;
 }
 
-.title {
-  font-size:1.05rem;
+.title{
   margin:0;
   font-weight:600;
+  font-size:1.05rem;
   color:white;
 }
 
-.sub {
+.sub{
   margin:0;
-  font-size:0.9rem;
   color:var(--muted);
+  font-size:0.88rem;
 }
 
-.badges {
+.badges{
   display:flex;
   gap:8px;
 }
 
-.pill {
-  padding:6px 10px;
+.pill{
+  padding:5px 8px;
   font-size:0.82rem;
   border-radius:999px;
-  background:rgba(255,255,255,0.05);
-  border:1px solid rgba(255,255,255,0.08);
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.02);
   color:var(--muted);
 }
 
-/* ---------------------------------------------------------
-   SIDEBAR
----------------------------------------------------------- */
-aside.side {
-  padding:18px;
-  background: var(--card);
+aside.panel{
+  padding:16px;
+  background:var(--card);
+  border-radius:var(--radius);
   border:1px solid var(--card-border);
-  border-radius: var(--radius);
 }
 
-aside.side h3 {
-  margin:0 0 14px 0;
+aside.panel h3{
+  margin:0 0 12px 0;
 }
 
-.rec-item {
+.rec-item{
   display:flex;
   justify-content:space-between;
   padding:10px;
-  background:rgba(255,255,255,0.04);
-  border:1px solid rgba(255,255,255,0.07);
   border-radius:12px;
-  margin-bottom:12px;
-  transition:0.15s;
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.02);
+  margin-bottom:10px;
+  transition:0.12s;
 }
 
-.rec-item:hover {
+.rec-item:hover{
   transform:translateX(4px);
   cursor:pointer;
 }
 
-.sub-name {
-  color:white;
+.sub-name{
   font-weight:600;
+  color:white;
 }
-.sub-desc {
-  font-size:0.86rem;
+
+.sub-desc{
+  font-size:0.85rem;
   color:var(--muted);
 }
 
-/* ---------------------------------------------------------
-   FOOTER
----------------------------------------------------------- */
-footer {
+footer{
   margin:60px 0 40px;
   text-align:center;
-  color:var(--muted);
   font-size:0.9rem;
+  color:var(--muted);
 }
 
-@media (max-width:960px) {
-  main.wrapper {
+@media(max-width:960px){
+  main.wrapper{
     grid-template-columns:1fr;
   }
 }
+
+/* -------------------------------------------------
+  FULLSCREEN OVERLAY POST VIEWER
+------------------------------------------------- */
+#overlay{
+  display:none;
+  position:fixed;
+  top:0; left:0;
+  width:100%;
+  height:100%;
+  background: rgba(0,0,0,0.95);
+  z-index:9999;
+  overflow-y:auto;
+  padding:24px;
+  box-sizing:border-box;
+  color:white;
+}
+
+#overlay .close-btn{
+  position:fixed;
+  top:24px;
+  right:24px;
+  font-size:1.6rem;
+  background: rgba(255,255,255,0.2);
+  border:none;
+  border-radius:50%;
+  width:40px;
+  height:40px;
+  cursor:pointer;
+  color:#042615;
+}
+
+#overlay h2{
+  margin-top:0;
+}
+
+#overlay img, #overlay video{
+  max-width:100%;
+  margin-top:12px;
+  border-radius:12px;
+}
 </style>
 </head>
-
 <body>
 
-<!-- ---------------------------------------------------------
-     ✅ HEADER
----------------------------------------------------------- -->
 <header class="banner">
-  <h1>Organic Suite</h1>
-
-  <div class="cta">
-    <a class="link-muted" href="https://github.com/Soupmax22/Organic-suite" target="_blank">View on GitHub</a>
-    <button class="btn" id="see-products">See all products</button>
-  </div>
+<h1>Organic Suite</h1>
+<div class="cta">
+  <a class="link-muted" href="https://github.com/Soupmax22/Organic-suite" target="_blank">View on GitHub</a>
+  <button class="btn" id="see-products">See all products</button>
+</div>
 </header>
 
-<!-- ---------------------------------------------------------
-     ✅ MAIN WRAPPER
----------------------------------------------------------- -->
 <main class="wrapper">
+<section>
+  <div class="search-card">
+    <input class="search-input" id="searchInput" placeholder="Search Reddit…">
+    <select id="sort">
+      <option value="relevance">Relevance</option>
+      <option value="hot">Hot</option>
+      <option value="new">New</option>
+      <option value="top">Top</option>
+    </select>
+    <button class="btn" id="searchBtn">Search</button>
+  </div>
 
-  <!-- LEFT COLUMN (SEARCH + RESULTS) -->
-  <section>
-    <div class="search-card">
-      <input class="search-input" id="searchInput" placeholder="Search Reddit…">
-      <select id="sort">
-        <option value="relevance">Relevance</option>
-        <option value="hot">Hot</option>
-        <option value="new">New</option>
-        <option value="top">Top</option>
-      </select>
-      <button class="btn" id="searchBtn">Search</button>
-    </div>
+  <p style="color:var(--muted); margin-top:8px;">
+    Reddit may be blocked at school. Use local JSON below.
+  </p>
 
-    <p style="color:var(--muted); margin-top:8px;">
-      Reddit may be blocked at school. Use local JSON below.
-    </p>
+  <div style="display:flex; gap:8px; margin-top:8px;">
+    <button class="link-muted" id="loadLocal">Load local JSON</button>
+    <input id="localFile" type="file" accept=".json" style="display:none;">
+  </div>
 
-    <div style="display:flex; gap:8px; margin-top:8px;">
-      <button class="link-muted" id="loadLocal">Load local JSON</button>
-      <input id="localFile" type="file" accept=".json" style="display:none;">
-    </div>
+  <div id="results"></div>
+</section>
 
-    <div id="results"></div>
-  </section>
-
-  <!-- RIGHT SIDEBAR -->
-  <aside class="side">
-    <h3>Recommended</h3>
-    <div id="recs"></div>
-  </aside>
-
+<aside class="panel">
+  <h3>Recommended</h3>
+  <div id="recs"></div>
+</aside>
 </main>
 
 <footer>
-  © 2025 Organic Suite — ad-free viewers for the web
+  © 2025 Organic Suite — ad-free Reddit viewer
 </footer>
 
-<!-- ---------------------------------------------------------
-     ✅ SCRIPT (FULL V1 FEATURE SET)
----------------------------------------------------------- -->
+<!-- OVERLAY -->
+<div id="overlay">
+  <button class="close-btn">&times;</button>
+  <div id="overlay-content"></div>
+</div>
+
 <script>
 const resultsEl = document.getElementById("results");
 const recsEl = document.getElementById("recs");
 const searchInput = document.getElementById("searchInput");
 const sortSel = document.getElementById("sort");
+const overlay = document.getElementById("overlay");
+const overlayContent = document.getElementById("overlay-content");
 
 document.getElementById("see-products").onclick = () =>
   window.open("https://github.com/Soupmax22/Organic-suite","_blank");
 
-/* ---------------------------------------------------------
-   LOCAL JSON LOADER (for blocked school networks)
----------------------------------------------------------- */
+// LOCAL JSON
 document.getElementById("loadLocal").onclick = () =>
   document.getElementById("localFile").click();
 
 document.getElementById("localFile").addEventListener("change", async (ev)=>{
   const file = ev.target.files[0];
-  const text = await file.text();
-
-  try {
-    const json = JSON.parse(text);
+  const txt = await file.text();
+  try{
+    const json = JSON.parse(txt);
     const posts = json.data ? json.data.children.map(c=>c.data) : json;
     renderPosts(posts);
-  } catch {
-    alert("Invalid JSON file!");
+  }catch{
+    alert("Invalid JSON");
   }
 });
 
-/* ---------------------------------------------------------
-   REDDIT SEARCH FUNCTION
----------------------------------------------------------- */
-async function searchReddit(query, sort) {
-  const url = `https://www.reddit.com/search.json?q=${encodeURIComponent(query)}&limit=50&sort=${sort}`;
-  const r = await fetch(url);
-  const j = await r.json();
-  return j.data.children.map(c=>c.data);
+// SEARCH
+async function searchReddit(query, sort){
+  const res = await fetch(`https://www.reddit.com/search.json?q=${encodeURIComponent(query)}&limit=30&sort=${sort}`);
+  const json = await res.json();
+  return json.data.children.map(c=>c.data);
 }
 
-/* ---------------------------------------------------------
-   RUN SEARCH
----------------------------------------------------------- */
-async function runSearch() {
+async function runSearch(){
   const q = searchInput.value.trim();
-  if(!q) {
-    resultsEl.innerHTML = "<p style='color:var(--muted);'>Type something to search.</p>";
-    return;
-  }
-
-  resultsEl.innerHTML = "<p style='color:var(--muted);'>Loading…</p>";
-
-  try {
+  if(!q){ resultsEl.innerHTML="<p style='color:var(--muted)'>Type something to search.</p>"; return; }
+  resultsEl.innerHTML="<p style='color:var(--muted)'>Loading…</p>";
+  try{
     const posts = await searchReddit(q, sortSel.value);
     renderPosts(posts);
     populateRecs(posts);
-  } catch {
-    resultsEl.innerHTML = "<p style='color:var(--muted);'>Cannot reach Reddit. Use local JSON.</p>";
+  }catch{
+    resultsEl.innerHTML="<p style='color:var(--muted)'>Cannot reach Reddit. Use local JSON.</p>";
   }
 }
 
 document.getElementById("searchBtn").onclick = runSearch;
-searchInput.onkeyup = e => { if(e.key === "Enter") runSearch(); };
+searchInput.onkeyup = e=>{if(e.key==="Enter") runSearch();};
 
-/* ---------------------------------------------------------
-   RENDER POSTS
----------------------------------------------------------- */
-function renderPosts(posts) {
-  resultsEl.innerHTML = "";
-
-  posts.forEach(p => {
-    const article = document.createElement("article");
-    article.className = "post";
+// RENDER POSTS
+function renderPosts(posts){
+  resultsEl.innerHTML="";
+  posts.forEach(p=>{
+    const post = document.createElement("div");
+    post.className="post";
 
     const thumb = document.createElement("div");
-    thumb.className = "thumb";
-
-    let imgURL = "";
-    if(p.thumbnail && p.thumbnail.startsWith("http")) imgURL = p.thumbnail;
-    if(!imgURL && p.preview?.images?.[0]) {
-      imgURL = p.preview.images[0].source.url.replace(/&amp;/g,"&");
-    }
-
-    if(imgURL) {
+    thumb.className="thumb";
+    let thumbUrl="";
+    if(p.thumbnail && p.thumbnail.startsWith("http")) thumbUrl=p.thumbnail;
+    if(!thumbUrl && p.preview?.images?.[0]) thumbUrl=p.preview.images[0].source.url.replace(/&amp;/g,"&");
+    if(thumbUrl){
       const img = document.createElement("img");
-      img.src = imgURL;
+      img.src=thumbUrl;
       thumb.appendChild(img);
     }
 
     const meta = document.createElement("div");
-    meta.className = "meta";
-
+    meta.className="meta";
     const title = document.createElement("h4");
-    title.className = "title";
+    title.className="title";
     title.textContent = p.title;
-
     const sub = document.createElement("p");
-    sub.className = "sub";
+    sub.className="sub";
     sub.textContent = `r/${p.subreddit} • u/${p.author} • ${p.ups} upvotes`;
+    meta.append(title,sub);
+    post.append(thumb,meta);
 
-    const badges = document.createElement("div");
-    badges.className = "badges";
-
-    const time = document.createElement("span");
-    time.className = "pill";
-    time.textContent = new Date(p.created_utc * 1000).toLocaleString();
-
-    badges.appendChild(time);
-
-    meta.append(title, sub, badges);
-
-    article.append(thumb, meta);
-
-    article.onclick = () =>
-      window.open(p.url_overridden_by_dest || ("https://reddit.com" + p.permalink), "_blank");
-
-    resultsEl.appendChild(article);
+    post.onclick = ()=>{
+      showOverlay(p);
+    };
+    resultsEl.appendChild(post);
   });
 }
 
-/* ---------------------------------------------------------
-   RECOMMENDATION SYSTEM (simple frequency)
----------------------------------------------------------- */
-function populateRecs(posts) {
-  recsEl.innerHTML = "";
-
-  const freq = {};
-  posts.forEach(p => freq[p.subreddit] = (freq[p.subreddit] || 0) + 1);
-
-  Object.keys(freq)
-    .sort((a,b)=>freq[b]-freq[a])
-    .slice(0,5)
-    .forEach(subName => {
-      addSubRec(subName, "Top results from search");
-    });
+// RECOMMENDATIONS
+function populateRecs(posts){
+  recsEl.innerHTML="";
+  const freq={};
+  posts.forEach(p=>freq[p.subreddit]=(freq[p.subreddit]||0)+1);
+  Object.keys(freq).sort((a,b)=>freq[b]-freq[a]).slice(0,4).forEach(s=>{
+    addRecItem(s,"Top results");
+  });
+  ["technology","gaming","aww","pics"].forEach(s=>addRecItem(s,"Open subreddit"));
 }
 
-/* default sidebar */
-["technology","pics","funny","gaming","AskReddit"].forEach(s=>{
-  addSubRec(s,"Open subreddit");
-});
-
-function addSubRec(name, desc) {
-  const wrap = document.createElement("div");
-  wrap.className = "rec-item";
-
-  wrap.innerHTML = `
-    <div>
-      <div class="sub-name">r/${name}</div>
-      <div class="sub-desc">${desc}</div>
-    </div>
-    <div style="opacity:.5;">›</div>
-  `;
-
-  wrap.onclick = async () => {
-    try {
-      const r = await fetch(`https://www.reddit.com/r/${name}.json`);
-      const j = await r.json();
-      const posts = j.data.children.map(c=>c.data);
-      renderPosts(posts);
-    } catch {
-      alert("Blocked or unreachable.");
-    }
+function addRecItem(name,desc){
+  const div = document.createElement("div");
+  div.className="rec-item";
+  div.innerHTML=`<div><div class="sub-name">r/${name}</div><div class="sub-desc">${desc}</div></div><div style="opacity:.6">›</div>`;
+  div.onclick=async()=>{
+    const r = await fetch(`https://www.reddit.com/r/${name}.json`);
+    const j = await r.json();
+    renderPosts(j.data.children.map(c=>c.data));
   };
+  recsEl.appendChild(div);
+}
 
-  recsEl.appendChild(wrap);
+// OVERLAY
+function showOverlay(post){
+  overlayContent.innerHTML="";
+  const h2 = document.createElement("h2"); h2.textContent=post.title;
+  overlayContent.appendChild(h2);
+
+  const meta = document.createElement("p");
+  meta.textContent=`r/${post.subreddit} • u/${post.author} • ${post.ups} upvotes • ${new Date(post.created_utc*1000).toLocaleString()}`;
+  overlayContent.appendChild(meta);
+
+  if(post.selftext) {
+    const p = document.createElement("p"); p.textContent=post.selftext;
+    overlayContent.appendChild(p);
+  }
+
+  // Media
+  if(post.preview?.images?.[0]){
+    const img = document.createElement("img");
+    img.src = post.preview.images[0].source.url.replace(/&amp;/g,"&");
+    overlayContent.appendChild(img);
+  }
+
+  if(post.media?.reddit_video?.fallback_url){
+    const vid = document.createElement("video");
+    vid.src = post.media.reddit_video.fallback_url;
+    vid.controls = true;
+    overlayContent.appendChild(vid);
+  }
+
+  overlay.style.display="block";
+}
+
+overlay.querySelector(".close-btn").onclick=()=>{overlay.style.display="none";}
+overlay.onclick=e=>{
+  if(e.target===overlay) overlay.style.display="none";
 }
 </script>
 
