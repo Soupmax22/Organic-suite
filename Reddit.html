@@ -12,7 +12,7 @@
             padding: 0;
         }
         header, footer {
-            background-color: #2d6a4f;
+            background-color: #40916c; /* Updated banner color */
             color: white;
             padding: 1rem;
             text-align: center;
@@ -87,13 +87,11 @@
             const div = document.createElement('div');
             div.classList.add('reddit-post');
 
-            // Title and selftext
             div.innerHTML = `<h3>${post.title}</h3>`;
             if (post.selftext) {
                 div.innerHTML += `<p>${post.selftext}</p>`;
             }
 
-            // Images or media
             if (post.post_hint === 'image' && post.url) {
                 div.innerHTML += `<img src="${post.url}" alt="Post image">`;
             }
@@ -103,7 +101,6 @@
                                    </video>`;
             }
 
-            // Link to Reddit post
             div.innerHTML += `<p><a href="https://reddit.com${post.permalink}" target="_blank">View on Reddit</a></p>`;
 
             return div;
@@ -131,7 +128,6 @@
             }
         });
 
-        // Load default subreddit
         loadSubreddit('popular');
     </script>
 
